@@ -1,6 +1,8 @@
 import Express from 'express'
 import Helmet from 'helmet';
 
+import Tasks from './routes/tasks'
+
 const app = Express();
 const port = process.env.SERVER_PORT;
 
@@ -8,12 +10,7 @@ const port = process.env.SERVER_PORT;
 app.use(Helmet());
 app.set('view engine', 'ejs');
 
-app.use((req, res, next) => {
-    res.render('index.ejs', {
-        name: req.query.name,
-    });
-    next();
-});
+app.use("/tasks", Tasks);
 
 // Make express listen to port 
 app.listen(port, () => {
